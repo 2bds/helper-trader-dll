@@ -1,0 +1,8 @@
+LIBRARY TrideHelper
+VERSION 0.1
+EXPORTS
+__getSignalCount
+__getSignals
+__getSignal
+__getText
+__sendSignalIds
