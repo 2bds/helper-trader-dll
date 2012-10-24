@@ -14,10 +14,13 @@ static PCWSTR signalUrl = L"http://tetraforex.anthill.by/management/components/s
 static const std::wstring iDsUrl = L"http://tetraforex.anthill.by/management/components/signals/handler.php?action=deactivateSignals&id=";
 static const std::string RESPONSE_FALSE = "false";
 
+#define WINHTTP_FLAG_NOT_ASYNC              0x00000000  // this session is not asynchronous
+
 BOOL parseXml()
 {
+	WINHTTP_FLAG_ASYNC;
 	SimpleBrowser simpleBrowser;
-	simpleBrowser.Initialize(0);
+	simpleBrowser.Initialize(WINHTTP_FLAG_NOT_ASYNC);
 	std::string response;
 	BOOL result = simpleBrowser.getSignalsResponse(signalUrl, response);
 	///TODO
@@ -85,11 +88,11 @@ void __stdcall __getSignals(MqlStr array1[])
 void __stdcall __getText(wchar_t *text, wchar_t *from, wchar_t *to)
 {
 	wchar_t *cp;
-	//--- проверка параметров
+	//--- check parameters
 	if(text==NULL || from==NULL || to==NULL) return;
 	if(wcslen(from)!=wcslen(to))             return;
-	//--- поищем подстроку
+	//--- search substring
 	if((cp=wcsstr(text,from))==NULL)         return;
-	//--- заменим
+	//--- replace
 	memcpy(cp,to,wcslen(to)*sizeof(wchar_t));
 }
