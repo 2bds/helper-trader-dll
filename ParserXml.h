@@ -19,7 +19,7 @@ struct Signal
 {
 	int id;
 	std::string  currency;
-   std::string  dateOpen;
+    std::string  dateOpen;
 	std::string  dateClose;
 	std::string  type;
 	std::string  price;

@@ -26,7 +26,6 @@ public:
 
 	HRESULT GetResponse(std::string& response)
 	{
-		//std::string response;
 		DWORD dwSize = 0;
 		DWORD dwDownloaded = 0;
 		LPSTR pszOutBuffer;
